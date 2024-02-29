@@ -1,13 +1,13 @@
-import { z } from "zod";
-import { OpenAI } from "@langchain/openai";
+const { z } = require("zod");
+// import { OpenAI } from "@langchain/openai";
 // import { GooglePaLM } from "langchain/llms/googlepalm";
-import { PromptTemplate } from "@langchain/core/prompts";
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
+const { PromptTemplate } = require("@langchain/core/prompts");
+const { ChatGoogleGenerativeAI } = require("@langchain/google-genai");
 
-import {
+const {
   StructuredOutputParser,
   OutputFixingParser,
-} from "langchain/output_parsers";
+} = require("langchain/output_parsers");
 
 // For Creating Diet Plan
 
@@ -40,7 +40,7 @@ const getPromptForDietPlan = async (content) => {
   return input;
 };
 
-export const createDietPlan = async (content) => {
+const createDietPlan = async (content) => {
   const input = await getPromptForDietPlan(content);
 
   const model = new ChatGoogleGenerativeAI({
@@ -82,7 +82,7 @@ const getPromptForAnalyze = async (content) => {
   const input = await prompt.format({ entry: content });
   return input;
 };
-export const analyzeGivenFood = async (content) => {
+const analyzeGivenFood = async (content) => {
   const input = await getPromptForAnalyze(content);
 
   const model = new ChatGoogleGenerativeAI({
@@ -133,7 +133,7 @@ const getPromptForBadFood = async (content) => {
   return input;
 };
 
-export const createDietPlanForBadFood = async (content) => {
+const createDietPlanForBadFood = async (content) => {
   const input = await getPromptForBadFood(content);
 
   const model = new ChatGoogleGenerativeAI({
@@ -143,4 +143,10 @@ export const createDietPlanForBadFood = async (content) => {
   });
   const output = await model.invoke(input);
   return output;
+};
+
+module.exports = {
+  createDietPlan,
+  analyzeGivenFood,
+  createDietPlanForBadFood,
 };

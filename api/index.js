@@ -1,14 +1,13 @@
-import dotenv from "dotenv";
-dotenv.config();
+require("dotenv").config();
 
-import express from "express";
-import {
+const express = require("express");
+const {
   analyzeGivenFood,
   createDietPlan,
   createDietPlanForBadFood,
-} from "../utils/ai.js";
+} = require("../utils/ai.js");
 
-export const app = express();
+const app = express();
 
 app.get("/", async (req, res) => {
   const resForDiet = await createDietPlan(
@@ -35,3 +34,5 @@ app.get("/", async (req, res) => {
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
+
+module.exports = app;
