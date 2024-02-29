@@ -4,9 +4,9 @@
   "description": "",
   "main": "api/index.js",
   "scripts": {
-    "build": "node api/index.js",
+    "build": "npm install",
     "start": "node api/index.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon api/index.js"
   },
   "keywords": [],
   "author": "",
