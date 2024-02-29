@@ -8,7 +8,7 @@ import {
   createDietPlanForBadFood,
 } from "../utils/ai.js";
 
-const app = express();
+export const app = express();
 
 app.get("/", async (req, res) => {
   const resForDiet = await createDietPlan(
